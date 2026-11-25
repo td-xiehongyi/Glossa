@@ -1,0 +1,40 @@
+﻿<Border xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" BorderThickness="0,0,0,1" CornerRadius="0,0,10,10" UseLayoutRounding="True">
+ <Border.Resources>
+  <Style TargetType="ToggleButton">
+   <Setter Property="Width" Value="39"/><Setter Property="Height" Value="33"/><Setter Property="Margin" Value="2"/>
+   <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+   <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+   <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
+   <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ToggleButton">
+    <Border x:Name="Cap" CornerRadius="5" BorderThickness="1,1,1,2" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Border>
+    <ControlTemplate.Triggers>
+     <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Cap" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/></Trigger>
+     <Trigger Property="IsChecked" Value="True">
+      <Setter TargetName="Cap" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+      <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+     </Trigger>
+    </ControlTemplate.Triggers>
+   </ControlTemplate></Setter.Value></Setter>
+  </Style>
+ </Border.Resources>
+ <DockPanel>
+  <DockPanel Style="{DynamicResource PageFooter}">
+   <Button x:Name="SaveButton" Style="{DynamicResource PageAction}" Content="保存" IsDefault="True"/>
+   <TextBlock x:Name="Status" VerticalAlignment="Center" TextWrapping="Wrap"/>
+  </DockPanel>
+  <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+   <StackPanel Margin="20,12,20,0">
+  <TextBlock Text="点击键帽，或直接按下键盘组合。鼠标侧键也可以在此窗口录入。" TextWrapping="Wrap" Margin="0,0,0,12"/>
+  <GroupBox Header="当前选择"><WrapPanel x:Name="SelectionCaps" Margin="8,4,8,8"/></GroupBox>
+  <GroupBox Header="键盘与鼠标" Margin="0,12,0,0">
+   <Viewbox StretchDirection="DownOnly" Stretch="Uniform" HorizontalAlignment="Center" Margin="6">
+    <StackPanel x:Name="KeyboardRows"/>
+   </Viewbox>
+  </GroupBox>
+   </StackPanel>
+  </ScrollViewer>
+ </DockPanel>
+</Border>
